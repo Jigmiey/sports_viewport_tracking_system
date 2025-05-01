@@ -70,7 +70,7 @@ The **viewport_tracker.py** module implements an adaptive hybrid tracker that co
 
 where **w_t** is Process Noise and **F** is Transition Matrix .
 
-### 4. Key Innovations & Solutions
+### Key Innovations & Solutions
 1. **Adaptive Clustering for High-FPS Scenarios** :
    
    **Challenge:**
@@ -81,10 +81,40 @@ where **w_t** is Process Noise and **F** is Transition Matrix .
 
 2. **Hybrid EMA-Kalman Smoothing**:
 
-   **Challenge:**
-        - Neither standalone EMA smoothing nor pure Kalman Filtering achieved optimal viewport stabilization.
+   **Challenge** :
+        - Neither standalone EMA smoothing nor pure Kalman Filtering achieved optimal viewport stabilization. 
 
-   **Solution:**
-         - Hybridisation of EMA and Kalman Filter was done to improve smoothing. 
-         - Also damping effect is applied in State Space Modelling of Viewport travelling.
+   **Solution** :
+       - Hybridisation of EMA and Kalman Filter was done to improve smoothing. 
+       - Damping effect is applied in State Space Modelling of Viewport.
+
+### Future Improvements
+1. **Enhanced Motion Detection**:
+
+**Current Limitation** : Frame differencing produces false positives from lighting changes or camera noise.
+
+**Proposed Solution** : Use lightweight learning models like YOLO to detect players.
+
+2. **Model Predictive Control(MPC) - Augmented Tracking**
+
+**Current Limitation** : Kalman Filter uses single-frame state estimation, limiting long-term trajectory optimization.
+
+**Proposed Solution** : 
+    
+**MPC-inspired Kalman Window**: 
+              - Incorporate N past frames as state history
+              - Predict future viewport positions via receding horizon optimization
+
+3. **Acceleration-Damped Performance Metrics**:
+
+   **Current Limitation**: Viewport jitter correlates with abrupt acceleration changes.
+
+   **Proposed Solution**:
+
+  **Physics-Inspired Metric**: - Viewport's Acceleration reduction is analagous to reducing "virtual force" on the camera.
+  - Enables quantitative comparison of smoothing algorithms.
+   
+
+  
+   
    
