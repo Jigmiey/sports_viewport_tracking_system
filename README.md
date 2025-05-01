@@ -1,8 +1,8 @@
 # Sports Motion Detection & Viewport Tracking
 
 <p align="center">
-  <img src="motion_detection.gif" alt="Motion Detection Demo" width="48%" height=280>
-  <img src="viewport_tracking.gif" alt="Viewport Tracking Demo" width="48%" height=280>
+  <img src="output/results_for_documentation/motion_detection.gif" alt="Motion Detection Demo" width="48%" height=280>
+  <img src="output/results_for_documentation/viewport_tracking.gif" alt="Viewport Tracking Demo" width="48%" height=280>
 </p>
 
 ## 📌 Introduction
@@ -48,8 +48,8 @@ The **motion_detector.py** module identifies regions of motion between consecuti
 - Returns Bounding Boxes: Coordinates of detected motion regions for viewport tracking $(x,y,w,h)$.
 
 <p align="center">
-  <img src="frame_1.png" alt="frame1" width="48%" height=280>
-  <img src="frame_1_binary.png" alt="frame1binary" width="48%" height=280>
+  <img src="output/results_for_documentation/frame_1.png" alt="frame1" width="48%" height=280>
+  <img src="output/results_for_documentation/frame_1_binary.png" alt="frame1binary" width="48%" height=280>
 </p>
 
 ### 3. Viewport Tracking
@@ -57,6 +57,7 @@ The **viewport_tracker.py** module implements an adaptive hybrid tracker that co
 
 - Identifies ROI(Region of Interest): Uses K-Means clustering on motion boxes to select the dominant action region.
 - Adaptive Smoothing: Blends Kalman Filter (for state prediction) and EMA (for responsiveness):
+   - Here, First **Motion Analysis** is done by calculating **Motion Intensity** which is normalised sum of area of all detected bounding boxes in ROI. Then based on Motion Intensity value, weight is given to Kalman Filter and EMA respectively.
    - Low motion: 90% Kalman, 10% EMA (blend=0.1) for stability.
    - High motion: 70% Kalman, 30% EMA (blend=0.3) for agility.
 - Boundary Handling: Clips viewport to frame edges to avoid invalid positions.
