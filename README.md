@@ -1,8 +1,8 @@
 # Sports Motion Detection & Viewport Tracking
 
 <p align="center">
-  <img src="motion_detection.gif" alt="Motion Detection Demo" width="48%" height=280>
-  <img src="viewport_tracking.gif" alt="Viewport Tracking Demo" width="48%" height=280>
+  <img src="output/results_for_documentation/motion_detection.gif" alt="Motion Detection Demo" width="48%" height=280>
+  <img src="output/results_for_documentation/viewport_tracking.gif" alt="Viewport Tracking Demo" width="48%" height=280>
 </p>
 
 ## 📌 Introduction
@@ -48,8 +48,8 @@ The **motion_detector.py** module identifies regions of motion between consecuti
 - Returns Bounding Boxes: Coordinates of detected motion regions for viewport tracking $(x,y,w,h)$.
 
 <p align="center">
-  <img src="frame_1.png" alt="frame1" width="48%" height=280>
-  <img src="frame_1_binary.png" alt="frame1binary" width="48%" height=280>
+  <img src="output/results_for_documentation/frame_1.png" alt="frame1" width="48%" height=280>
+  <img src="output/results_for_documentation/frame_1_binary.png" alt="frame1binary" width="48%" height=280>
 </p>
 
 ### 3. Viewport Tracking
