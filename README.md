@@ -57,6 +57,7 @@ The **viewport_tracker.py** module implements an adaptive hybrid tracker that co
 
 - Identifies ROI(Region of Interest): Uses K-Means clustering on motion boxes to select the dominant action region.
 - Adaptive Smoothing: Blends Kalman Filter (for state prediction) and EMA (for responsiveness):
+   - Here, First **Motion Analysis** is done by calculating **Motion Intensity** which is normalised sum of area of all detected bounding boxes in ROI. Then based on Motion Intensity value, weight is given to Kalman Filter and EMA respectively.
    - Low motion: 90% Kalman, 10% EMA (blend=0.1) for stability.
    - High motion: 70% Kalman, 30% EMA (blend=0.3) for agility.
 - Boundary Handling: Clips viewport to frame edges to avoid invalid positions.
