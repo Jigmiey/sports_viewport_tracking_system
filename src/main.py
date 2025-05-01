@@ -81,11 +81,5 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
-#python src/main.py --video "data\sample_video_clip.mp4" --output "output" --fps 5  --viewport_size "720x480"
 
-#conda create -p venv_viewport python==3.10
-#conda activate venv_viewport/
-#pip install -r requirements.txt
-#python src/main.py --video "data\sample_video_clip.mp4" --output "output" --fps 5  --viewport_size "720x480"
 
