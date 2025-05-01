@@ -69,3 +69,9 @@ The **viewport_tracker.py** module implements an adaptive hybrid tracker that co
 </p>
 
 where **w_t** is Process Noise and **F** is Transition Matrix .
+
+### 4. Key Innovations & Solutions
+1. **Adaptive Clustering for High-FPS Scenarios** :
+   Challenge:
+      - At high target FPS (>25), frame differencing generated sparse bounding boxes, causing standard K-Means (n_clusters=3) 
+       to over-segment or fail.
