@@ -62,3 +62,5 @@ The **viewport_tracker.py** module implements an adaptive hybrid tracker that co
    - High motion: 70% Kalman, 30% EMA (blend=0.3) for agility.
 - Boundary Handling: Clips viewport to frame edges to avoid invalid positions.
 
+#### State Space Model used for Kalman Filter (Physics-Based Smoothing) is :
+
