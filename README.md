@@ -72,6 +72,19 @@ where **w_t** is Process Noise and **F** is Transition Matrix .
 
 ### 4. Key Innovations & Solutions
 1. **Adaptive Clustering for High-FPS Scenarios** :
-   Challenge:
-      - At high target FPS (>25), frame differencing generated sparse bounding boxes, causing standard K-Means (n_clusters=3) 
-       to over-segment or fail.
+   
+   **Challenge:**
+      - At high target FPS (>25), frame differencing generated sparse bounding boxes, causing standard K-Means (n_clusters=3) to over-segment or fail.
+   
+   **Solution :**
+      - Dynamically adjusted cluster count: Fallback to 1 if insufficient boxes
+
+2. **Hybrid EMA-Kalman Smoothing**:
+
+   **Challenge:**
+        - Neither standalone EMA smoothing nor pure Kalman Filtering achieved optimal viewport stabilization.
+
+   **Solution:**
+         - Hybridisation of EMA and Kalman Filter was done to improve smoothing. 
+         - Also damping effect is applied in State Space Modelling of Viewport travelling.
+   
