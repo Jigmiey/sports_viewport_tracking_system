@@ -64,5 +64,5 @@ The **viewport_tracker.py** module implements an adaptive hybrid tracker that co
 
 #### State Space Model used for Kalman Filter (Physics-Based Smoothing) is :
 <p align="center">
-  <img src="output/results_for_documentation/state_space_model.png" alt="frame1" width="48%" height=280>
+  <img src="output/results_for_documentation/state_space_model.png" alt="frame1" width="50%" height=300>
 </p>
