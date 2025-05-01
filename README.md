@@ -19,9 +19,12 @@ Built with Python and OpenCV, the system simulates professional broadcast camera
 
 ## 🛠️ Installation
 ```bash
+# Clone repository
+git clone https://github.com/Jigmiey/sports_viewport_tracking_system.git
+cd sports_viewport_tracking_system
 # Create conda environment
-conda create -p venv_viewport python==3.10
-conda activate venv_viewport/
+conda create -n venv_viewport python==3.8
+conda activate venv_viewport
 
 # Install dependencies
 pip install -r requirements.txt
@@ -29,7 +32,7 @@ pip install -r requirements.txt
 ## 💻 Usage
 ```bash
 # Basic command with required arguments
-python src/main.py --video "data\sample_video_clip.mp4" --output "output" --fps 5  --viewport_size "720x480"
+python -m src.main --video "data\sample_video_clip.mp4" --output "output" --fps 5 --viewport_size "720x480"
 ```
 
 ## 🔍 Methodology
@@ -95,6 +98,8 @@ where **w_t** is Process Noise and **F** is Transition Matrix .
 
 **Proposed Solution** : Use lightweight learning models like YOLO to detect players.
 
+
+
 2. **Model Predictive Control(MPC) - Augmented Tracking**
 
 **Current Limitation** : Kalman Filter uses single-frame state estimation, limiting long-term trajectory optimization.
@@ -105,11 +110,13 @@ where **w_t** is Process Noise and **F** is Transition Matrix .
               - Incorporate N past frames as state history
               - Predict future viewport positions via receding horizon optimization
 
+              
+
 3. **Acceleration-Damped Performance Metrics**:
 
-   **Current Limitation**: Viewport jitter correlates with abrupt acceleration changes.
+**Current Limitation**: Viewport jitter correlates with abrupt acceleration changes.
 
-   **Proposed Solution**:
+**Proposed Solution**:
 
   **Physics-Inspired Metric**: - Viewport's Acceleration reduction is analagous to reducing "virtual force" on the camera.
   - Enables quantitative comparison of smoothing algorithms.
