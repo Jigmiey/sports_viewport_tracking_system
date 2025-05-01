@@ -19,9 +19,12 @@ Built with Python and OpenCV, the system simulates professional broadcast camera
 
 ## 🛠️ Installation
 ```bash
+# Clone repository
+git clone https://github.com/Jigmiey/sports_viewport_tracking_system.git
+cd sports_viewport_tracking_system
 # Create conda environment
-conda create -p venv_viewport python==3.10
-conda activate venv_viewport/
+conda create -n venv_viewport python==3.8
+conda activate venv_viewport
 
 # Install dependencies
 pip install -r requirements.txt
@@ -29,7 +32,7 @@ pip install -r requirements.txt
 ## 💻 Usage
 ```bash
 # Basic command with required arguments
-python src/main.py --video "data\sample_video_clip.mp4" --output "output" --fps 5  --viewport_size "720x480"
+python -m src.main --video "data\sample_video_clip.mp4" --output "output" --fps 5 --viewport_size "720x480"
 ```
 
 ## 🔍 Methodology
@@ -62,3 +65,63 @@ The **viewport_tracker.py** module implements an adaptive hybrid tracker that co
    - High motion: 70% Kalman, 30% EMA (blend=0.3) for agility.
 - Boundary Handling: Clips viewport to frame edges to avoid invalid positions.
 
+#### State Space Model used for Kalman Filter (Physics-Based Smoothing) is :
+
+<p align="center">
+  <img src="output/results_for_documentation/state_space_model.png" alt="frame1" width="50%" height=300>
+</p>
+
+where **w_t** is Process Noise and **F** is Transition Matrix .
+
+### Key Innovations & Solutions
+1. **Adaptive Clustering for High-FPS Scenarios** :
+   
+   **Challenge:**
+      - At high target FPS (>25), frame differencing generated sparse bounding boxes, causing standard K-Means (n_clusters=3) to over-segment or fail.
+   
+   **Solution :**
+      - Dynamically adjusted cluster count: Fallback to 1 if insufficient boxes
+
+2. **Hybrid EMA-Kalman Smoothing**:
+
+   **Challenge** :
+        - Neither standalone EMA smoothing nor pure Kalman Filtering achieved optimal viewport stabilization. 
+
+   **Solution** :
+       - Hybridisation of EMA and Kalman Filter was done to improve smoothing. 
+       - Damping effect is applied in State Space Modelling of Viewport.
+
+### Future Improvements
+1. **Enhanced Motion Detection**:
+
+**Current Limitation** : Frame differencing produces false positives from lighting changes or camera noise.
+
+**Proposed Solution** : Use lightweight learning models like YOLO to detect players.
+
+
+
+2. **Model Predictive Control(MPC) - Augmented Tracking**
+
+**Current Limitation** : Kalman Filter uses single-frame state estimation, limiting long-term trajectory optimization.
+
+**Proposed Solution** : 
+    
+**MPC-inspired Kalman Window**: 
+              - Incorporate N past frames as state history
+              - Predict future viewport positions via receding horizon optimization
+
+              
+
+3. **Acceleration-Damped Performance Metrics**:
+
+**Current Limitation**: Viewport jitter correlates with abrupt acceleration changes.
+
+**Proposed Solution**:
+
+  **Physics-Inspired Metric**: - Viewport's Acceleration reduction is analagous to reducing "virtual force" on the camera.
+  - Enables quantitative comparison of smoothing algorithms.
+   
+
+  
+   
+   
